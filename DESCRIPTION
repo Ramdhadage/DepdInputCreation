@@ -12,3 +12,6 @@ LazyData: true
 RoxygenNote: 7.2.3
 URL: https://github.com/Ramdhadage/DepdInputCreation
 BugReports: https://github.com/Ramdhadage/DepdInputCreation/issues
+Imports: 
+    dplyr,
+    shiny
