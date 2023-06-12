@@ -5,6 +5,7 @@ filterApp <- function() {
       sidebarPanel(
         datasetInput("data", is.data.frame),
         textOutput("n"),
+        chooseVarInput("choose_var"),
         filterUI("filter"),
       ),
       mainPanel(
@@ -14,9 +15,12 @@ filterApp <- function() {
   )
   server <- function(input, output, session) {
     df <- datasetServer("data")
-    filter <- filterServer("filter", df)
+    choose_var_data <- chooseVarServer("choose_var", data = df)
 
-    output$table <- renderTable(df()[filter(), , drop = FALSE])
+
+    filter <- filterServer("filter", df)
+    
+    output$table <- renderTable(df()[filter(),, drop = FALSE])
     output$n <- renderText(paste0(sum(filter()), " rows"))
   }
   shinyApp(ui, server)

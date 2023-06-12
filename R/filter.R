@@ -9,7 +9,6 @@ filterServer <- function(id, df) {
 
   moduleServer(id, function(input, output, session) {
     vars <- reactive(names(df()))
-
     output$controls <- renderUI({
       purrr::map(vars(), function(var) make_ui(df()[[var]], NS(id, var), var))
     })
